@@ -20,7 +20,8 @@ class Student
 
   def self.create_from_collection(students_array)
     students_array.each do |student|
-      puts "#{person[:name]}: #{person[:occupation]}"
+      student[:name]
+      student[:occupation]
     end
   end
 
