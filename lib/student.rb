@@ -1,32 +1,35 @@
 class Student
 
-  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url, :scraper
+  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
   @@all = []
 
   def initialize(student_hash)
+    #student_hash {|key, value| self.send(("#{key}="), value)}
+    @name = student_hash[:name]
+    @location = student_hash[:location]
+    @twitter = student_hash[:twitter]
+    @linkedin = student_hash[:linkedin]
+    @github = student_hash[:github]
+    @blog = student_hash[:blog]
+    @profile_quote = student_hash[:profile_quote]
+    @bio = student_hash[:bio]
+    @profile_url = student_hash[:proifle_url]
     @@all << self
-
   end
 
   def self.create_from_collection(students_array)
-    student = Student.new(name)
-    @@all << student
+    students_array.each
+
+
   end
 
   def add_student_attributes(attributes_hash)
-    Scraper.scraped_student
-
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
   def self.all
     @@all
-
   end
 
-  def new(student_hash)
-    new_student = Student.new
-    student_hash[:name] = "new_student.name"
-    @@all << new_student
-end
 end
